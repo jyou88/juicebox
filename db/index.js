@@ -46,11 +46,16 @@ async function updateUser(id, fields = {}) {
 }
 
 async function getAllUsers() {
-    const { rows } = await client.query(
-        `SELECT id, username, name, location, active FROM users;
+    try {
+        const { rows } = await client.query(`
+        SELECT id, username, name, location, active
+        FROM users;
         `);
 
-    return rows;
+        return rows;
+    } catch (error) {
+        throw error;
+    }
 }
 
 async function getUserById(userId) {
@@ -251,5 +256,6 @@ module.exports = {
     getUserById,
     createTags,
     createPostTag,
-    addTagsToPost
+    addTagsToPost,
+    getPostsByTagName
 }
