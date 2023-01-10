@@ -49,13 +49,13 @@ apiRouter.use((req, res, next) => {
 
 
 apiRouter.use((req, res, next) => {
-    console.log("A request is being made to /users");
+    console.log("A request is being made to /api");
 
     next();
 });
 
 apiRouter.get('/', async (req, res) => {
-    const api = await getAllUsers();
+    const api = await getAllApi();
 
     res.send({
         api
